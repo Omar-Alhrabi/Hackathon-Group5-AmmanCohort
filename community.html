@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتدى المجتمع - منصة الأمل للإغاثة والتنمية</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .hero-section {
+            background-color: #2c6e49;
+            color: white;
+            padding: 40px 0;
+        }
+        .forum-card {
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        .forum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .category-icon {
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .topic-card {
+            border-left: 4px solid #2c6e49;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+        .topic-card:hover {
+            transform: translateX(-5px);
+        }
+        .avatar-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .avatar-xs {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .badge-volunteer {
+            background-color: #2c6e49;
+            color: white;
+        }
+        .badge-donor {
+            background-color: #fb8500;
+            color: white;
+        }
+        .badge-beneficiary {
+            background-color: #4361ee;
+            color: white;
+        }
+        .badge-admin {
+            background-color: #d90429;
+            color: white;
+        }
+        .stats-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 15px;
+            text-align: center;
+            height: 100%;
+        }
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c6e49;
+        }
+        .volunteer-status {
+            background-color: #e9f5db;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .bg-light-green {
+            background-color: #f7fcf5;
+        }
+        .sidebar-item {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .sidebar-item:hover {
+            background-color: #e9f5db;
+        }
+        .sidebar-item.active {
+            background-color: #2c6e49;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1>مجتمع المتطوعين والداعمين</h1>
+                <p class="lead">منصة للتواصل، تبادل الخبرات، ومناقشة مشاريع المساعدة والتنمية</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <button class="btn btn-light btn-lg"><i class="fas fa-plus-circle me-2"></i> إضافة موضوع جديد</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Main Content Area -->
+        <div class="col-lg-8">
+            <!-- Community Stats -->
+            <div class="row mb-4">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number">٣٬٤٥٠</div>
+                        <div>عضو</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number">٦٨٠</div>
+                        <div>موضوع</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number">١٢٬٣٤٠</div>
+                        <div>تعليق</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number">٤٢</div>
+                        <div>نشط الآن</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Recent Topics -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3>أحدث المواضيع</h3>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown">
+                        ترتيب حسب: الأحدث
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                        <li><a class="dropdown-item active" href="#">الأحدث</a></li>
+                        <li><a class="dropdown-item" href="#">الأكثر تفاعلاً</a></li>
+                        <li><a class="dropdown-item" href="#">الأكثر مشاهدة</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Topic List -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body p-0">
+                    <!-- Topic 1 -->
+                    <div class="topic-card p-3 bg-light-green">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                                <div>
+                                    <h5 class="mb-1">تجربتي في توزيع المساعدات الغذائية في مخيم الزعتري</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-2">أحمد الخالدي</span>
+                                        <span class="badge badge-volunteer me-2">متطوع</span>
+                                        <small class="text-muted">منذ ساعتين</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="fw-bold">٢٣</div>
+                                <small class="text-muted">تعليق</small>
+                            </div>
+                        </div>
+                        <p class="mt-2">أود مشاركة تجربتي في توزيع المساعدات الغذائية في مخيم الزعتري الأسبوع الماضي، والتحديات التي واجهتنا والحلول التي اتبعناها...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge bg-success me-1">تطوع ميداني</span>
+                                <span class="badge bg-info">مخيم الزعتري</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 2 -->
+                    <div class="topic-card p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                                <div>
+                                    <h5 class="mb-1">مقترح لتطوير آلية جمع التبرعات العينية</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-2">سارة المهندس</span>
+                                        <span class="badge badge-donor me-2">متبرع</span>
+                                        <small class="text-muted">منذ ٥ ساعات</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="fw-bold">١٨</div>
+                                <small class="text-muted">تعليق</small>
+                            </div>
+                        </div>
+                        <p class="mt-2">لاحظت وجود بعض التحديات في عملية جمع التبرعات العينية، وأود مشاركة مقترح لتطوير الآلية باستخدام تطبيق للهواتف الذكية...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge bg-warning me-1">تبرعات عينية</span>
+                                <span class="badge bg-info">مقترح تطوير</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 3 -->
+                    <div class="topic-card p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                                <div>
+                                    <h5 class="mb-1">كيف غيرت المنحة التعليمية حياتي: قصة نجاح</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-2">فاطمة الزهراء</span>
+                                        <span class="badge badge-beneficiary me-2">مستفيد</span>
+                                        <small class="text-muted">منذ يوم واحد</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="fw-bold">٣٦</div>
+                                <small class="text-muted">تعليق</small>
+                            </div>
+                        </div>
+                        <p class="mt-2">أود مشاركة قصتي مع المنحة التعليمية التي حصلت عليها من المؤسسة وكيف ساهمت في تغيير مسار حياتي والتحديات التي تغلبت عليها...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge bg-primary me-1">قصص نجاح</span>
+                                <span class="badge bg-info">المنح التعليمية</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 4 -->
+                    <div class="topic-card p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                                <div>
+                                    <h5 class="mb-1">دعوة للتطوع في حملة توزيع الحقائب المدرسية</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-2">محمد العمري</span>
+                                        <span class="badge badge-admin me-2">مشرف</span>
+                                        <small class="text-muted">منذ يومين</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="fw-bold">٢٨</div>
+                                <small class="text-muted">تعليق</small>
+                            </div>
+                        </div>
+                        <p class="mt-2">نبحث عن متطوعين للمشاركة في حملة توزيع الحقائب المدرسية للأطفال في المناطق النائية. الحملة ستبدأ الأسبوع القادم وتستمر لمدة 3 أيام...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge bg-success me-1">فرصة تطوع</span>
+                                <span class="badge bg-danger">عاجل</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-outline-success">عرض المزيد من المواضيع</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Search -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">بحث في المنتدى</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="ابحث عن موضوع...">
+                        <button class="btn btn-success" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#" class="badge bg-light text-dark text-decoration-none p-2">التطوع</a>
+                        <a href="#" class="badge bg-light text-dark text-decoration-none p-2">التعليم</a>
+                        <a href="#" class="badge bg-light text-dark text-decoration-none p-2">مشاريع المياه</a>
+                        <a href="#" class="badge bg-light text-dark text-decoration-none p-2">مساعدات غذائية</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Active Users -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">الأعضاء النشطون</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                        <div>
+                            <div class="fw-bold">أحمد الخالدي</div>
+                            <small class="text-muted">متطوع - ١٢٠ مشاركة</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                        <div>
+                            <div class="fw-bold">سارة المهندس</div>
+                            <small class="text-muted">متبرع - ٩٨ مشاركة</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                        <div>
+                            <div class="fw-bold">محمد العمري</div>
+                            <small class="text-muted">مشرف - ٢١٠ مشاركة</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
+                        <div>
+                            <div class="fw-bold">فاطمة الزهراء</div>
+                            <small class="text-muted">مستفيد - ٧٥ مشاركة</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Volunteer Opportunities -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">فرص تطوع عاجلة</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3 pb-3 border-bottom">
+                        <h6>حملة توزيع مساعدات غذائية</h6>
+                        <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ١٥-١٧ مارس ٢٠٢٥</div>
+                        <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> مخيم الزعتري، الأردن</div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge bg-danger">نحتاج ١٥ متطوع</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
+                        </div>
+                    </div>
+                    <div class="mb-3 pb-3 border-bottom">
+                        <h6>مشروع حفر بئر مياه</h6>
+                        <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ٢٠-٢٥ مارس ٢٠٢٥</div>
+                        <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> قرية المنصورة، اليمن</div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge bg-warning">نحتاج ٨ متطوعين</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h6>ترميم مدرسة متضررة</h6>
+                        <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ١-١٠ أبريل ٢٠٢٥</div>
+                        <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> بلدة الحصينة، سوريا</div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge bg-success">نحتاج ١٢ متطوع</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-outline-primary btn-sm">عرض جميع الفرص</a>
+                </div>
+            </div>
+            
+            <!-- Donation Status -->
+<div class="volunteer-status">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">حالة التبرعات الشهرية</h5>
+        <span class="badge bg-success">٨٥٪ من الهدف</span>
+    </div>
+    <div class="progress mb-3" style="height: 15px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+    </div>
+    <div class="d-flex justify-content-between small text-muted">
+        <span>٠ ريال</span>
+        <span>١٠,٠٠٠ ريال</span>
+    </div>
+</div>
