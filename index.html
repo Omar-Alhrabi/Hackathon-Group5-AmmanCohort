@@ -62,12 +62,12 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/">طرود الخير</a>
-
+    
             <!-- Toggler for Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+    
             <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarContent">
                 <!-- Navigation Links -->
@@ -82,11 +82,10 @@
                         <a class="nav-link" href="#community">المجتمع</a>
                     </li>
                 </ul>
-
-                <!-- Register and Sign In Buttons -->
-                <div class="d-flex">
-                    <a href="#register" class="btn btn-outline-light me-2">تسجيل</a>
-                    <a href="#signin" class="btn btn-primary">تسجيل الدخول</a>
+    
+                <!-- Conditional Authentication Buttons -->
+                <div class="d-flex" id="authButtons">
+                    <!-- This section will be dynamically replaced based on user session -->
                 </div>
             </div>
         </div>
@@ -278,5 +277,33 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>    document.addEventListener("DOMContentLoaded", function() {
+        const currentUser = getCurrentUser(); 
+        const authButtonsContainer = document.getElementById('authButtons');
+        
+        if (currentUser) {
+       
+            authButtonsContainer.innerHTML = `
+                <span class="text-light me-3 d-flex align-items-center">مرحباً ${currentUser.fullName}</span>
+                <button onclick="logout()" class="btn btn-outline-light">تسجيل الخروج</button>
+            `;
+        } else {
+           
+            authButtonsContainer.innerHTML = `
+                <a href="/register.html" class="btn btn-outline-light me-2">تسجيل</a>
+                <a href="/login.html" class="btn btn-primary">تسجيل الدخول</a>
+            `;
+        }
+    });
+    
+    function getCurrentUser() {
+        const userStr = localStorage.getItem('currentUser');
+        return userStr ? JSON.parse(userStr) : null;
+    }
+    
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+    }</script>
 </body>
 </html>

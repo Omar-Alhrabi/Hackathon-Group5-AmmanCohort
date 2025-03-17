@@ -18,7 +18,7 @@
         </div>
         
         <div id="success-message" class="success-message">
-            Login successful! Redirecting to your dashboard...
+            Login successful! Redirecting to your index...
         </div>
         
         <div id="error-message" class="error-message" style="display: none; margin-bottom: 15px;">
@@ -97,7 +97,7 @@
             
             // التحويل إلى لوحة التحكم
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'index.html';
             }, 2000);
         } else {
             // فشل تسجيل الدخول
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.isLoggedIn) {
         // المستخدم مسجل بالفعل، التحويل إلى لوحة التحكم
-        window.location.href = 'dashboard.html';
+        window.location.href = 'index.html';
     }
 }); 
         
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (currentUser && currentUser.isLoggedIn) {
                 // User is already logged in, redirect to dashboard
-                window.location.href = 'dashboard.html';
+                window.location.href = 'index.html';
             }
             
             // Check browser language setting
