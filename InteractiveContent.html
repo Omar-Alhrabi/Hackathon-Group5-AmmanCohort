@@ -224,31 +224,7 @@ function toggleLanguage() {
     }
 }
 
-// وظيفة تحديث جميع نصوص الصفحة
-function updateAllPageText() {
-    // تحديث عناوين الصفحة
-    updateText(".title", "title");
-    updateText(".subtitle", "subtitle");
-    
-    // تحديث زر تبديل اللغة
-    updateText("#toggle-lang", "toggle-lang");
-    
-    // تحديث قسم الاستبيان
-    updateText(".poll-section h2", "poll-section-title");
-    updateText("label:nth-child(1)", "food-option");
-    updateText("label:nth-child(2)", "clothes-option");
-    updateText("label:nth-child(3)", "money-option");
-    updateText("#poll-form button", "submit-button");
-    
-    // تحديث قسم الخريطة
-    updateText(".map-section h2", "map-section-title");
-    
-    // تحديث قسم الحاسبة
-    updateText(".calculator-section h2", "calculator-section-title");
-    updateText(".calculator-section p:first-of-type", "calculator-description");
-    updateAttribute("#donation-amount", "placeholder", "donation-amount-placeholder");
-    updateText(".calculator-section button", "calculate-button");
-}
+
 
 // وظيفة تحديث نتيجة الاستبيان
 function updatePollResult(donationType) {
