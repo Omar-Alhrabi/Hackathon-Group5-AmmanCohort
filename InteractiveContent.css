@@ -1,0 +1,384 @@
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #F8F7F1;
+    color: #0D1B2A;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.header {
+    background: linear-gradient(to left, #1A2B49, #0D1B2A);
+    padding: 35px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top right, rgba(255, 215, 0, 0.2), transparent 70%);
+}
+
+.title {
+    margin: 0;
+    font-size: 2.6rem;
+    font-weight: 700;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #FFD700;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    margin-top: 12px;
+    font-weight: 500;
+    opacity: 0.95;
+    position: relative;
+}
+
+.main-content {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* تنسيق زر تبديل اللغة */
+#toggle-lang {
+    background-color: #FFD700;
+    color: #0D1B2A;
+    border: none;
+    padding: 8px 15px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+#toggle-lang:hover {
+    background-color: #FFCC00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* تنسيق استطلاع الرأي */
+.poll-section {
+    background-color: white;
+    padding: 25px;
+    margin: 30px auto;
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(26, 43, 73, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid #FFD700;
+}
+
+.poll-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(26, 43, 73, 0.15);
+}
+
+.poll-section h2 {
+    color: #1A2B49;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #F8F7F1;
+    padding-bottom: 12px;
+}
+
+.poll-section h2 i {
+    color: #FFD700;
+    margin-left: 8px;
+}
+
+.poll-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: right;
+}
+
+.poll-section label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background-color: #F8F7F1;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 3px solid transparent;
+}
+
+.poll-section label:hover {
+    background-color: #FFF8E1;
+    border-right: 3px solid #FFD700;
+}
+
+.poll-section input[type="radio"] {
+    accent-color: #FFD700;
+    transform: scale(1.2);
+}
+
+.impact-icon {
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+.poll-section button {
+    background-color: #1A2B49;
+    color: white;
+    border: none;
+    padding: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.poll-section button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.poll-section button:hover::before {
+    left: 100%;
+}
+
+.poll-section button:hover {
+    background-color: #0D1B2A;
+    box-shadow: 0 5px 15px rgba(13, 27, 42, 0.3);
+}
+
+/* تنسيق خريطة التبرعات */
+.map-section {
+    margin: 30px auto;
+    width: 90%;
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(26, 43, 73, 0.1);
+    border-top: 4px solid #1A2B49;
+}
+
+.map-section h2 {
+    color: #1A2B49;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #F8F7F1;
+    padding-bottom: 12px;
+}
+
+.map-section h2 i {
+    color: #FFD700;
+    margin-left: 8px;
+}
+
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #F0EBD8;
+}
+
+#location-info {
+    margin-top: 20px;
+    padding: 18px;
+    background-color: #FFF8E1;
+    border-radius: 10px;
+    border-right: 4px solid #FFD700;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#location-name {
+    margin-top: 0;
+    color: #1A2B49;
+    font-weight: 700;
+}
+
+/* تنسيق حاسبة التبرعات */
+.calculator-section {
+    background-color: white;
+    padding: 28px;
+    margin: 30px auto;
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(26, 43, 73, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid #FFD700;
+}
+
+.calculator-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(26, 43, 73, 0.15);
+}
+
+.calculator-section h2 {
+    color: #1A2B49;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #F8F7F1;
+    padding-bottom: 12px;
+}
+
+.calculator-section h2 i {
+    color: #FFD700;
+    margin-left: 8px;
+}
+
+.calculator-section p {
+    color: #1A2B49;
+    font-size: 1.1rem;
+}
+
+.calculator-section input {
+    width: 80%;
+    padding: 16px;
+    margin: 18px 0;
+    border: 2px solid #F0EBD8;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.calculator-section input:focus {
+    border-color: #FFD700;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.calculator-section button {
+    background-color: #1A2B49;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-section button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.calculator-section button:hover::before {
+    left: 100%;
+}
+
+.calculator-section button:hover {
+    background-color: #0D1B2A;
+    box-shadow: 0 5px 15px rgba(13, 27, 42, 0.3);
+}
+
+.calculator-section button i {
+    color: #FFD700;
+    margin-left: 8px;
+}
+
+#donation-result {
+    margin-top: 22px;
+    padding: 18px;
+    background-color: #FFF8E1;
+    border-radius: 10px;
+    display: none;
+    line-height: 1.6;
+    border-right: 4px solid #FFD700;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#donation-result strong {
+    color: #1A2B49;
+}
+
+/* تأثيرات النص */
+.impact-icon {
+    margin-left: 10px;
+    color: #FFD700;
+    font-size: 1.25rem;
+}
+
+/* تنسيق الموقع المتجاوب */
+@media (max-width: 768px) {
+    .poll-section, .map-section, .calculator-section {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .calculator-section input {
+        width: 90%;
+    }
+}
+
+/* تنسيق إضافي للغة الإنجليزية */
+body.ltr {
+    text-align: left;
+    direction: ltr;
+}
+
+body.ltr .poll-section label,
+body.ltr .impact-icon {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+body.ltr .poll-section h2 i,
+body.ltr .map-section h2 i,
+body.ltr .calculator-section h2 i,
+body.ltr .calculator-section button i {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+body.ltr .poll-section label {
+    border-right: none;
+    border-left: 3px solid transparent;
+}
+
+body.ltr .poll-section label:hover {
+    border-left: 3px solid #FFD700;
+}
+
+body.ltr #location-info,
+body.ltr #donation-result {
+    border-right: none;
+    border-left: 4px solid #FFD700;
+}
