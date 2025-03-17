@@ -17,7 +17,7 @@
             height: 40px;
         }
         .hero-section {
-            background-color: #2c6e49;
+            background-color: #0D1B2A; /* Dark Blue */
             color: white;
             padding: 40px 0;
         }
@@ -43,7 +43,7 @@
             margin-bottom: 15px;
         }
         .topic-card {
-            border-left: 4px solid #2c6e49;
+            border-left: 4px solid #FFD700; /* Gold */
             margin-bottom: 15px;
             transition: transform 0.2s;
         }
@@ -61,20 +61,29 @@
             border-radius: 50%;
         }
         .badge-volunteer {
-            background-color: #2c6e49;
+            background-color: #1A2B49; /* Navy */
             color: white;
         }
+
+        .badge1{
+            background-color: #FFD700; /* Gold */
+            color: #0D1B2A; /* Dark Blue */
+            border: 1px solid #FFD700; /* Gold */
+            border-radius: 20px;
+            
+        }
+
         .badge-donor {
-            background-color: #fb8500;
-            color: white;
+            background-color: #FFD700; /* Gold */
+            color: #0D1B2A; /* Dark Blue */
         }
         .badge-beneficiary {
-            background-color: #4361ee;
-            color: white;
+            background-color: #FFCC00; /* Golden Yellow */
+            color: #0D1B2A; /* Dark Blue */
         }
         .badge-admin {
-            background-color: #d90429;
-            color: white;
+            background-color: #1A2B49; /* Navy */
+            color: #FFD700; /* Gold */
         }
         .stats-card {
             background: white;
@@ -87,16 +96,16 @@
         .stats-number {
             font-size: 2rem;
             font-weight: bold;
-            color: #2c6e49;
+            color: #FFD700; /* Gold */
         }
         .volunteer-status {
-            background-color: #e9f5db;
+            background-color: #f1f1f1;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
         }
-        .bg-light-green {
-            background-color: #f7fcf5;
+        .bg-light-blue {
+            background-color: #e6edf5;
         }
         .sidebar-item {
             padding: 10px 15px;
@@ -104,17 +113,70 @@
             margin-bottom: 5px;
         }
         .sidebar-item:hover {
-            background-color: #e9f5db;
+            background-color: #e6edf5;
         }
         .sidebar-item.active {
-            background-color: #2c6e49;
-            color: white;
+            background-color: #1A2B49; /* Navy */
+            color: #FFD700; /* Gold */
+        }
+        .btn-success {
+            background-color: #1A2B49; /* Navy */
+            border-color: #1A2B49; /* Navy */
+        }
+        .btn-success:hover {
+            background-color: #0D1B2A; /* Dark Blue */
+            border-color: #0D1B2A; /* Dark Blue */
+        }
+        .btn-outline-success {
+            color: #1A2B49; /* Navy */
+            border-color: #1A2B49; /* Navy */
+        }
+        .btn-outline-success:hover {
+            background-color: #1A2B49; /* Navy */
+            color: #FFD700; /* Gold */
+        }
+        .btn-primary {
+            background-color: #FFD700; /* Gold */
+            border-color: #FFD700; /* Gold */
+            color: #0D1B2A; /* Dark Blue */
+        }
+        .btn-primary:hover {
+            background-color: #FFCC00; /* Golden Yellow */
+            border-color: #FFCC00; /* Golden Yellow */
+            color: #0D1B2A; /* Dark Blue */
+        }
+        .btn-outline-primary {
+            color: #FFD700; /* Gold */
+            border-color: #FFD700; /* Gold */
+        }
+        .btn-outline-primary:hover {
+            background-color: #FFD700; /* Gold */
+            color: #0D1B2A; /* Dark Blue */
+        }
+        .card-header.bg-success {
+            background-color: #1A2B49 !important; /* Navy */
+        }
+        .card-header.bg-primary {
+            background-color: #FFD700 !important; /* Gold */
+            color: #0D1B2A !important; /* Dark Blue */
+        }
+        .bg-success {
+            background-color: #1A2B49 !important; /* Navy */
+        }
+        .bg-primary {
+            background-color: #FFD700 !important; /* Gold */
+            color: #0D1B2A !important; /* Dark Blue */
+        }
+        .bg-warning {
+            background-color: #FFCC00 !important; /* Golden Yellow */
+            color: #0D1B2A !important; /* Dark Blue */
+        }
+        .progress-bar.bg-success {
+            background-color: #FFD700 !important; /* Gold */
         }
     </style>
 </head>
 <body>
-
-
 
 <!-- Hero Section -->
 <section class="hero-section">
@@ -164,7 +226,6 @@
                 </div>
             </div>
 
-            
             <!-- Recent Topics -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3>أحدث المواضيع</h3>
@@ -184,7 +245,7 @@
             <div class="card shadow-sm mb-4">
                 <div class="card-body p-0">
                     <!-- Topic 1 -->
-                    <div class="topic-card p-3 bg-light-green">
+                    <div class="topic-card p-3 bg-light-blue">
                         <div class="d-flex justify-content-between align-items-start">
                             <div class="d-flex">
                                 <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
@@ -192,7 +253,7 @@
                                     <h5 class="mb-1">تجربتي في توزيع المساعدات الغذائية في مخيم الزعتري</h5>
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-2">أحمد الخالدي</span>
-                                        <span class="badge badge-volunteer me-2">متطوع</span>
+                                        
                                         <small class="text-muted">منذ ساعتين</small>
                                     </div>
                                 </div>
@@ -206,9 +267,9 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="badge bg-success me-1">تطوع ميداني</span>
-                                <span class="badge bg-info">مخيم الزعتري</span>
+                                <span class="badge bg-warning me-1">مخيم الزعتري</span>
                             </div>
-                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                            
                         </div>
                     </div>
                     
@@ -221,7 +282,7 @@
                                     <h5 class="mb-1">مقترح لتطوير آلية جمع التبرعات العينية</h5>
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-2">سارة المهندس</span>
-                                        <span class="badge badge-donor me-2">متبرع</span>
+                                        
                                         <small class="text-muted">منذ ٥ ساعات</small>
                                     </div>
                                 </div>
@@ -234,10 +295,10 @@
                         <p class="mt-2">لاحظت وجود بعض التحديات في عملية جمع التبرعات العينية، وأود مشاركة مقترح لتطوير الآلية باستخدام تطبيق للهواتف الذكية...</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="badge bg-warning me-1">تبرعات عينية</span>
-                                <span class="badge bg-info">مقترح تطوير</span>
+                                <span class="badge bg-success me-1">تبرعات عينية</span>
+                                <span class="badge bg-warning me-1">مقترح تطوير</span>
                             </div>
-                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                            
                         </div>
                     </div>
                     
@@ -250,7 +311,7 @@
                                     <h5 class="mb-1">كيف غيرت المنحة التعليمية حياتي: قصة نجاح</h5>
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-2">فاطمة الزهراء</span>
-                                        <span class="badge badge-beneficiary me-2">مستفيد</span>
+                                        
                                         <small class="text-muted">منذ يوم واحد</small>
                                     </div>
                                 </div>
@@ -263,10 +324,10 @@
                         <p class="mt-2">أود مشاركة قصتي مع المنحة التعليمية التي حصلت عليها من المؤسسة وكيف ساهمت في تغيير مسار حياتي والتحديات التي تغلبت عليها...</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="badge bg-primary me-1">قصص نجاح</span>
-                                <span class="badge bg-info">المنح التعليمية</span>
+                                <span class="badge bg-success me-1">قصص نجاح</span>
+                                <span class="badge bg-warning me-1">المنح التعليمية</span>
                             </div>
-                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                            
                         </div>
                     </div>
                     
@@ -279,7 +340,7 @@
                                     <h5 class="mb-1">دعوة للتطوع في حملة توزيع الحقائب المدرسية</h5>
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-2">محمد العمري</span>
-                                        <span class="badge badge-admin me-2">مشرف</span>
+                                        
                                         <small class="text-muted">منذ يومين</small>
                                     </div>
                                 </div>
@@ -293,15 +354,13 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="badge bg-success me-1">فرصة تطوع</span>
-                                <span class="badge bg-danger">عاجل</span>
+                                <span class="badge bg-warning me-1">عاجل</span>
                             </div>
-                            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="btn btn-outline-success">عرض المزيد من المواضيع</a>
-                </div>
+                
             </div>
         </div>
         
@@ -334,28 +393,28 @@
                         <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
                         <div>
                             <div class="fw-bold">أحمد الخالدي</div>
-                            <small class="text-muted">متطوع - ١٢٠ مشاركة</small>
+                            <small class="text-muted">١٢٠ مشاركة</small>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
                         <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
                         <div>
                             <div class="fw-bold">سارة المهندس</div>
-                            <small class="text-muted">متبرع - ٩٨ مشاركة</small>
+                            <small class="text-muted">٩٨ مشاركة</small>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
                         <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
                         <div>
                             <div class="fw-bold">محمد العمري</div>
-                            <small class="text-muted">مشرف - ٢١٠ مشاركة</small>
+                            <small class="text-muted">٢١٠ مشاركة</small>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
                         <img src="/api/placeholder/40/40" class="avatar-sm me-2" alt="صورة العضو">
                         <div>
                             <div class="fw-bold">فاطمة الزهراء</div>
-                            <small class="text-muted">مستفيد - ٧٥ مشاركة</small>
+                            <small class="text-muted">٧٥ مشاركة</small>
                         </div>
                     </div>
                 </div>
@@ -372,7 +431,7 @@
                         <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ١٥-١٧ مارس ٢٠٢٥</div>
                         <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> مخيم الزعتري، الأردن</div>
                         <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span class="badge bg-danger">نحتاج ١٥ متطوع</span>
+                            <span class="badge1">نحتاج ١٥ متطوع</span>
                             <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
                         </div>
                     </div>
@@ -381,7 +440,7 @@
                         <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ٢٠-٢٥ مارس ٢٠٢٥</div>
                         <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> قرية المنصورة، اليمن</div>
                         <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span class="badge bg-warning">نحتاج ٨ متطوعين</span>
+                            <span class="badge1 ">نحتاج ٨ متطوعين</span>
                             <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
                         </div>
                     </div>
@@ -390,27 +449,20 @@
                         <div class="small text-muted mb-2"><i class="fas fa-calendar-alt me-1"></i> ١-١٠ أبريل ٢٠٢٥</div>
                         <div class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i> بلدة الحصينة، سوريا</div>
                         <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span class="badge bg-success">نحتاج ١٢ متطوع</span>
+                            <span class="badge1 ">نحتاج ١٢ متطوع</span>
                             <a href="#" class="btn btn-sm btn-outline-primary">تسجيل</a>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="btn btn-outline-primary btn-sm">عرض جميع الفرص</a>
-                </div>
+                
             </div>
             
-            <!-- Donation Status -->
-<div class="volunteer-status">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="mb-0">حالة التبرعات الشهرية</h5>
-        <span class="badge bg-success">٨٥٪ من الهدف</span>
-    </div>
-    <div class="progress mb-3" style="height: 15px;">
-        <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-    </div>
-    <div class="d-flex justify-content-between small text-muted">
-        <span>٠ ريال</span>
-        <span>١٠,٠٠٠ ريال</span>
+            
+        </div>
     </div>
 </div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
