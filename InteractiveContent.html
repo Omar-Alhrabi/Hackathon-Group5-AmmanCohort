@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحتوى التفاعلي - منصة الخير</title>
+    <link rel="stylesheet" href="InteractiveContent.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">منصة الخير</h1>
+        <p class="subtitle">شارك معنا وساهم في توزيع الطرود الخيرية</p>
+    </header>
+
+    <main class="main-content">
+        <button id="toggle-lang"><i class="fas fa-language"></i> English</button>
+        <!-- استطلاع رأي -->
+        <section class="poll-section">
+            <h2><i class="fas fa-poll"></i> ما هو نوع التبرع الذي ترغب في تقديمه؟</h2>
+            <label><input type="radio" name="donation" value="food"> <i class="fas fa-utensils impact-icon"></i> مواد غذائية</label>
+            <form id="poll-form">
+                <label><input type="radio" name="donation" value="clothes"> <i class="fas fa-tshirt impact-icon"></i> ملابس</label>
+                <label><input type="radio" name="donation" value="money"> <i class="fas fa-hand-holding-usd impact-icon"></i> دعم مالي</label>
+                <button type="submit"><i class="fas fa-paper-plane"></i> إرسال</button>
+            </form>
+            <p id="poll-result"></p>
+        </section>
+
+        <!-- خريطة تفاعلية لمراكز التبرع في الأردن فقط -->
+        <section class="map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> أماكن استلام التبرعات في الأردن</h2>
+            <div class="map-container">
+                <div id="donation-map" style="width: 100%; height: 400px;"></div>
+            </div>
+            <div id="location-info" style="margin-top: 15px; padding: 15px; background-color: #E8F5E9; border-radius: 8px; display: none;">
+                <h3 id="location-name" style="margin-top: 0; color: #2E8B57;"></h3>
+                <p id="location-address"></p>
+                <p id="location-hours"></p>
+                <p id="location-contact"></p>
+            </div>
+        </section>
+        
+        
+
+        <!-- حاسبة التبرعات -->
+        <section class="calculator-section">
+            <h2><i class="fas fa-calculator"></i> حاسبة التبرعات</h2>
+            <p>احسب كم يمكن لتبرعك أن يساعد العائلات المحتاجة</p>
+            <input type="number" id="donation-amount" placeholder="أدخل المبلغ بالدينار الأردني">
+            <button onclick="calculateImpact()"><i class="fas fa-heart"></i> احسب التأثير</button>
+            <p id="donation-result"></p>
+        </section>
+    </main>
+
+    <script>
+        // وظيفة حساب تأثير التبرع
+        function calculateImpact() {
+            const amount = document.getElementById('donation-amount').value;
+            const resultElement = document.getElementById('donation-result');
+            
+            if (amount && amount > 0) {
+                // افتراض أن كل 5 دنانير يمكن أن تساعد عائلة واحدة
+                const families = Math.floor(amount / 5);
+                // افتراض أن كل 10 دنانير يمكن أن توفر وجبة لـ 7 أشخاص
+                const meals = Math.floor(amount / 10) * 7;
+                
+                resultElement.innerHTML = `
+                    <strong><i class="fas fa-users impact-icon"></i> يمكن لتبرعك بمبلغ ${amount} دينار أن يساعد:</strong><br>
+                    - ${families} عائلة محتاجة<br>
+                    - توفير ${meals} وجبة غذائية<br>
+                    <strong>شكراً لمساهمتك في دعم المحتاجين!</strong>
+                `;
+                resultElement.style.display = 'block';
+            } else {
+                resultElement.innerHTML = `<strong><i class="fas fa-exclamation-circle impact-icon"></i> يرجى إدخال مبلغ صحيح</strong>`;
+                resultElement.style.display = 'block';
+            }
+        }
+
+        // معالجة استطلاع الرأي
+        document.getElementById('poll-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selected = document.querySelector('input[name="donation"]:checked');
+            const resultElement = document.getElementById('poll-result');
+            
+            if (selected) {
+                let donationType = '';
+                switch(selected.value) {
+                    case 'food':
+                        donationType = 'المواد الغذائية';
+                        break;
+                    case 'clothes':
+                        donationType = 'الملابس';
+                        break;
+                    case 'money':
+                        donationType = 'الدعم المالي';
+                        break;
+                }
+                
+                resultElement.innerHTML = `<div style="background-color: #E8F5E9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <i class="fas fa-check-circle impact-icon"></i> شكراً لاختيارك ${donationType}. سنتواصل معك قريباً لتنظيم استلام تبرعك.
+                </div>`;
+            } else {
+                resultElement.innerHTML = `<div style="background-color: #FFEBEE; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <i class="fas fa-exclamation-circle" style="color: #D32F2F;"></i> يرجى اختيار نوع التبرع أولاً.
+                </div>`;
+            }
+        });
+
+        
+       // تعريف الترجمات لجميع عناصر الصفحة
+const translations = {
+    ar: {
+        title: "منصة الخير",
+        subtitle: "شارك معنا وساهم في توزيع الطرود الخيرية",
+        "toggle-lang": "<i class='fas fa-language'></i> English",
+        "poll-section-title": "<i class='fas fa-poll'></i> ما هو نوع التبرع الذي ترغب في تقديمه؟",
+        "food-option": "مواد غذائية",
+        "clothes-option": "ملابس",
+        "money-option": "دعم مالي",
+        "submit-button": "<i class='fas fa-paper-plane'></i> إرسال",
+        "map-section-title": "<i class='fas fa-map-marked-alt'></i> أماكن استلام التبرعات في الأردن",
+        "calculator-section-title": "<i class='fas fa-calculator'></i> حاسبة التبرعات",
+        "calculator-description": "احسب كم يمكن لتبرعك أن يساعد العائلات المحتاجة",
+        "donation-amount-placeholder": "أدخل المبلغ بالدينار الأردني",
+        "calculate-button": "<i class='fas fa-heart'></i> احسب التأثير",
+        "valid-amount-error": "يرجى إدخال مبلغ صحيح",
+        "donation-impact-text": "يمكن لتبرعك بمبلغ {amount} دينار أن يساعد:",
+        "families-helped": "{count} عائلة محتاجة",
+        "meals-provided": "توفير {count} وجبة غذائية",
+        "thank-you-message": "شكراً لمساهمتك في دعم المحتاجين!",
+        "donation-thanks": "شكراً لاختيارك {type}. سنتواصل معك قريباً لتنظيم استلام تبرعك.",
+        "please-select-donation": "يرجى اختيار نوع التبرع أولاً.",
+        "food-donation-type": "المواد الغذائية",
+        "clothes-donation-type": "الملابس",
+        "money-donation-type": "الدعم المالي"
+    },
+    en: {
+        title: "Al-Khair Platform",
+        subtitle: "Join us and help distribute charity parcels",
+        "toggle-lang": "<i class='fas fa-language'></i> العربية",
+        "poll-section-title": "<i class='fas fa-poll'></i> What type of donation would you like to offer?",
+        "food-option": "Food Supplies",
+        "clothes-option": "Clothes",
+        "money-option": "Financial Support",
+        "submit-button": "<i class='fas fa-paper-plane'></i> Submit",
+        "map-section-title": "<i class='fas fa-map-marked-alt'></i> Donation Centers in Jordan",
+        "calculator-section-title": "<i class='fas fa-calculator'></i> Donation Calculator",
+        "calculator-description": "Calculate how much your donation can help families in need",
+        "donation-amount-placeholder": "Enter amount in Jordanian Dinars",
+        "calculate-button": "<i class='fas fa-heart'></i> Calculate Impact",
+        "valid-amount-error": "Please enter a valid amount",
+        "donation-impact-text": "Your donation of {amount} JOD can help:",
+        "families-helped": "{count} needy families",
+        "meals-provided": "{count} meals provided",
+        "thank-you-message": "Thank you for your contribution to help the needy!",
+        "donation-thanks": "Thank you for choosing {type}. We will contact you soon to arrange collection of your donation.",
+        "please-select-donation": "Please select a donation type first.",
+        "food-donation-type": "Food Supplies",
+        "clothes-donation-type": "Clothes",
+        "money-donation-type": "Financial Support"
+    }
+};
+
+let currentLang = "ar"; // اللغة الافتراضية هي العربية
+
+// وظيفة استبدال النص داخل العنصر
+function updateText(selector, textKey, replacements = {}) {
+    const element = document.querySelector(selector);
+    if (element) {
+        let text = translations[currentLang][textKey] || "";
+        
+        // استبدال المتغيرات في النص إن وجدت
+        for (const [key, value] of Object.entries(replacements)) {
+            text = text.replace(`{${key}}`, value);
+        }
+        
+        // التحقق مما إذا كان النص يحتوي على HTML
+        if (text.includes('<') && text.includes('>')) {
+            element.innerHTML = text;
+        } else {
+            element.textContent = text;
+        }
+    }
+}
+
+// وظيفة تحديث النص الموجود في السمة
+function updateAttribute(selector, attribute, textKey) {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.setAttribute(attribute, translations[currentLang][textKey] || "");
+    }
+}
+
+// وظيفة تحويل اللغة
+function toggleLanguage() {
+    // تبديل اللغة الحالية
+    currentLang = currentLang === "ar" ? "en" : "ar";
+    
+    // تغيير اتجاه الصفحة بناء على اللغة
+    document.body.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+    document.body.classList.toggle("ltr", currentLang === "en");
+    
+    // تحديث جميع النصوص في الصفحة
+    updateAllPageText();
+    
+    // أعد تحديث نتائج التبرع إذا كانت معروضة
+    const donationResult = document.getElementById('donation-result');
+    if (donationResult && donationResult.style.display === 'block') {
+        calculateImpact(); // أعد حساب التأثير لعرضه باللغة الجديدة
+    }
+    
+    // أعد تحديث نتائج الاستبيان إذا كانت معروضة
+    const pollResult = document.getElementById('poll-result');
+    if (pollResult && pollResult.innerHTML.trim() !== '') {
+        // هنا يمكنك إعادة معالجة نص نتيجة الاستبيان بناء على اللغة
+        const selected = document.querySelector('input[name="donation"]:checked');
+        if (selected) {
+            updatePollResult(selected.value);
+        }
+    }
+}
+
+// وظيفة تحديث جميع نصوص الصفحة
+function updateAllPageText() {
+    // تحديث عناوين الصفحة
+    updateText(".title", "title");
+    updateText(".subtitle", "subtitle");
+    
+    // تحديث زر تبديل اللغة
+    updateText("#toggle-lang", "toggle-lang");
+    
+    // تحديث قسم الاستبيان
+    updateText(".poll-section h2", "poll-section-title");
+    updateText("label:nth-child(1)", "food-option");
+    updateText("label:nth-child(2)", "clothes-option");
+    updateText("label:nth-child(3)", "money-option");
+    updateText("#poll-form button", "submit-button");
+    
+    // تحديث قسم الخريطة
+    updateText(".map-section h2", "map-section-title");
+    
+    // تحديث قسم الحاسبة
+    updateText(".calculator-section h2", "calculator-section-title");
+    updateText(".calculator-section p:first-of-type", "calculator-description");
+    updateAttribute("#donation-amount", "placeholder", "donation-amount-placeholder");
+    updateText(".calculator-section button", "calculate-button");
+}
+
+// وظيفة تحديث نتيجة الاستبيان
+function updatePollResult(donationType) {
+    const resultElement = document.getElementById('poll-result');
+    
+    // تحديد نوع التبرع المناسب
+    let donationTypeText;
+    switch(donationType) {
+        case 'food':
+            donationTypeText = translations[currentLang]["food-donation-type"];
+            break;
+        case 'clothes':
+            donationTypeText = translations[currentLang]["clothes-donation-type"];
+            break;
+        case 'money':
+            donationTypeText = translations[currentLang]["money-donation-type"];
+            break;
+    }
+    
+    // تحديث نص النتيجة
+    resultElement.innerHTML = `<div style="background-color: #E8F5E9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+        <i class="fas fa-check-circle impact-icon"></i> ${translations[currentLang]["donation-thanks"].replace('{type}', donationTypeText)}
+    </div>`;
+}
+
+// معالجة استطلاع الرأي
+document.getElementById('poll-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const selected = document.querySelector('input[name="donation"]:checked');
+    const resultElement = document.getElementById('poll-result');
+    
+    if (selected) {
+        updatePollResult(selected.value);
+    } else {
+        resultElement.innerHTML = `<div style="background-color: #FFEBEE; padding: 15px; border-radius: 8px; margin-top: 15px;">
+            <i class="fas fa-exclamation-circle" style="color: #D32F2F;"></i> ${translations[currentLang]["please-select-donation"]}
+        </div>`;
+    }
+});
+
+// وظيفة حساب تأثير التبرع
+function calculateImpact() {
+    const amount = document.getElementById('donation-amount').value;
+    const resultElement = document.getElementById('donation-result');
+    
+    if (amount && amount > 0) {
+        // افتراض أن كل 5 دنانير يمكن أن تساعد عائلة واحدة
+        const families = Math.floor(amount / 5);
+        // افتراض أن كل 10 دنانير يمكن أن توفر وجبة لـ 7 أشخاص
+        const meals = Math.floor(amount / 10) * 7;
+        
+        resultElement.innerHTML = `
+            <strong><i class="fas fa-users impact-icon"></i> ${translations[currentLang]["donation-impact-text"].replace('{amount}', amount)}</strong><br>
+            - ${translations[currentLang]["families-helped"].replace('{count}', families)}<br>
+            - ${translations[currentLang]["meals-provided"].replace('{count}', meals)}<br>
+            <strong>${translations[currentLang]["thank-you-message"]}</strong>
+        `;
+    } else {
+        resultElement.innerHTML = `<strong><i class="fas fa-exclamation-circle impact-icon"></i> ${translations[currentLang]["valid-amount-error"]}</strong>`;
+    }
+    resultElement.style.display = 'block';
+}
+
+// تهيئة الصفحة عند التحميل
+document.addEventListener('DOMContentLoaded', function() {
+    // تعيين اللغة الافتراضية وتحديث النصوص
+    document.body.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+    updateAllPageText();
+    
+    // إضافة مستمع الحدث لزر تبديل اللغة
+    document.getElementById("toggle-lang").addEventListener("click", toggleLanguage);
+    
+    // إضافة مستمع الحدث لزر حساب التأثير
+    document.querySelector(".calculator-section button").addEventListener("click", calculateImpact);
+});
+
+        document.getElementById("toggle-lang").addEventListener("click", toggleLanguage);
+
+        function calculateImpact() {
+            const amount = document.getElementById("donation-amount").value;
+            const resultElement = document.getElementById("donation-result");
+
+            if (amount && amount > 0) {
+                const families = Math.floor(amount / 5);
+                const meals = Math.floor(amount / 10) * 7;
+
+                resultElement.innerHTML = `
+                    <strong><i class="fas fa-users"></i> ${
+                        currentLang === "ar" ? `يمكن لتبرعك بمبلغ ${amount} دينار أن يساعد:` : `Your donation of ${amount} JOD can help:`
+                    }</strong><br>
+                    - ${families} ${currentLang === "ar" ? "عائلة محتاجة" : "needy families"}<br>
+                    - ${meals} ${currentLang === "ar" ? "وجبة غذائية" : "meals provided"}<br>
+                    <strong>${currentLang === "ar" ? "شكراً لمساهمتك في دعم المحتاجين!" : "Thank you for your contribution to help the needy!"}</strong>
+                `;
+            } else {
+                resultElement.innerHTML = `
+                    <strong><i class="fas fa-exclamation-circle"></i> ${
+                        currentLang === "ar" ? "يرجى إدخال مبلغ صحيح" : "Please enter a valid amount"
+                    }</strong>
+                `;
+            }
+            resultElement.style.display = "block";
+        }
+    </script>
+    
+    <!-- أضف مكتبة خرائط Google -->
+<script>
+    // تهيئة الخريطة عند تحميل الصفحة
+    function initMap() {
+        // مركز الخريطة على الأردن
+        const jordan = { lat: 31.9454, lng: 35.9284 };
+        
+        // إنشاء خريطة جديدة
+        const map = new google.maps.Map(document.getElementById("donation-map"), {
+            zoom: 8,
+            center: jordan,
+        });
+        
+        // مواقع التبرع
+        const donationLocations = [
+            {
+                position: { lat: 31.9454, lng: 35.9284 },
+                name: "مركز التبرعات الرئيسي - عمّان",
+                address: "شارع الملكة رانيا، عمّان",
+                hours: "من الأحد إلى الخميس: 9 صباحاً - 5 مساءً",
+                contact: "هاتف: 065123456"
+            },
+            {
+                position: { lat: 32.0614, lng: 36.0917 },
+                name: "جمعية الخير الأردنية - الزرقاء",
+                address: "شارع الملك عبدالله، الزرقاء",
+                hours: "من الأحد إلى الخميس: 10 صباحاً - 4 مساءً",
+                contact: "هاتف: 053987654"
+            },
+            {
+                position: { lat: 30.5852, lng: 36.2384 },
+                name: "مركز مساعدات - الكرك",
+                address: "وسط المدينة، الكرك",
+                hours: "من السبت إلى الخميس: 9 صباحاً - 3 مساءً",
+                contact: "هاتف: 032654789"
+            },
+            {
+                position: { lat: 29.5267, lng: 35.0075 },
+                name: "نقطة استلام - العقبة",
+                address: "شارع الملك حسين، العقبة",
+                hours: "يومياً: 10 صباحاً - 6 مساءً",
+                contact: "هاتف: 032019876"
+            },
+            {
+                position: { lat: 32.5568, lng: 35.8469 },
+                name: "مركز المساعدات الشمالي - إربد",
+                address: "شارع فلسطين، إربد",
+                hours: "من الأحد إلى الخميس: 8 صباحاً - 4 مساءً",
+                contact: "هاتف: 027654321"
+            }
+        ];
+        
+        // إضافة العلامات لمواقع التبرع
+        donationLocations.forEach((location) => {
+            const marker = new google.maps.Marker({
+                position: location.position,
+                map: map,
+                title: location.name,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: "#2E8B57",
+                    fillOpacity: 0.9,
+                    strokeColor: "#267349",
+                    strokeWeight: 2,
+                    scale: 8,
+                }
+            });
+            
+            // إضافة حدث النقر للعلامات
+            marker.addListener("click", () => {
+                // عرض معلومات الموقع
+                document.getElementById("location-name").textContent = location.name;
+                document.getElementById("location-address").textContent = location.address;
+                document.getElementById("location-hours").textContent = location.hours;
+                document.getElementById("location-contact").textContent = location.contact;
+                document.getElementById("location-info").style.display = "block";
+                
+                // تحريك الخريطة لمركز العلامة
+                map.setCenter(location.position);
+                map.setZoom(12);
+            });
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=&v=weekly" async></script>
+
+
+
+<script>
+    // استعادة الاختيار المحفوظ عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedDonation = localStorage.getItem('selectedDonation');
+        if (savedDonation) {
+            document.querySelector(`input[name="donation"][value="${savedDonation}"]`).checked = true;
+        }
+    });
+
+    // معالجة استطلاع الرأي مع تخزين الاختيار
+    document.getElementById('poll-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const selected = document.querySelector('input[name="donation"]:checked');
+        const resultElement = document.getElementById('poll-result');
+
+        if (selected) {
+            const donationType = selected.value;
+            localStorage.setItem('selectedDonation', donationType); // تخزين الاختيار في localStorage
+
+            let donationTypeText = '';
+            switch (donationType) {
+                case 'food':
+                    donationTypeText = translations[currentLang]["food-donation-type"];
+                    break;
+                case 'clothes':
+                    donationTypeText = translations[currentLang]["clothes-donation-type"];
+                    break;
+                case 'money':
+                    donationTypeText = translations[currentLang]["money-donation-type"];
+                    break;
+            }
+
+            resultElement.innerHTML = `<div style="background-color: #E8F5E9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <i class="fas fa-check-circle impact-icon"></i> ${translations[currentLang]["donation-thanks"].replace('{type}', donationTypeText)}
+            </div>`;
+        } else {
+            resultElement.innerHTML = `<div style="background-color: #FFEBEE; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <i class="fas fa-exclamation-circle" style="color: #D32F2F;"></i> ${translations[currentLang]["please-select-donation"]}
+            </div>`;
+        }
+    });
+</script>
+</body>
+</html>

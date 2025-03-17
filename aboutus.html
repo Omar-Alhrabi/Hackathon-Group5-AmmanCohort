@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة تجريبية</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            direction: rtl;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ffc107;
+        }
+        
+        .section-text {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .team-card {
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .team-member {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .team-role {
+            color: #777;
+            font-style: italic;
+        }
+        
+        /* تنسيق لقسم "لماذا تختارنا" */
+        .why-choose-us {
+            padding: 40px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .why-choose-us-subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .feature-card {
+            width: calc(33.33% - 20px);
+            background-color: #333;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .feature-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-title {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-card {
+                width: calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .feature-card {
+                width: 100%;
+            }
+        }
+
+        .navbar {
+            background-color: #1a2b49; /* Dark blue theme */
+        }
+        
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link:hover {
+            color: #ffd700 !important; /* Gold hover effect */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">طرود الخير</a>
+
+            <!-- Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="تبديل التنقل">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">المجتمع</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="activities.html">الأنشطة</a>
+                    </li>
+                </ul>
+
+                <!-- Register and Sign In Buttons -->
+                <div class="d-flex">
+                    <a href="register.html" class="btn btn-outline-light me-2">تسجيل</a>
+                    <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="main-content">
+        
+        <section class="about">
+            <h2 class="section-title">من نحن</h2>
+            <p class="section-text">نحن منصة خيرية تهدف إلى تسهيل وتنظيم توزيع الطرود الخيرية للمحتاجين خلال شهر رمضان المبارك. انطلقت منصتنا بهدف تمكين الأفراد والمتطوعين من التقديم والمشاركة في الأنشطة الخيرية، سواء من خلال تنظيم حملات التبرع أو تنسيق عمليات التوزيع لضمان وصول المساعدات إلى أكبر عدد ممكن من الأسر المحتاجة. نعمل على توفير بيئة رقمية مبسطة وسهلة الاستخدام، تعتمد على أحدث تقنيات الويب، لتكون جسرًا يربط بين المتبرعين والمتطوعين والمستفيدين. نسعى جاهدين لنشر الخير وتعزيز روح العطاء في المجتمع، مؤمنين بأن التعاون والعمل الجماعي هما مفتاح النجاح في دعم الفئات الأقل حظًا.</p>
+        </section>
+        
+        <!-- قسم "لماذا تختارنا" الجديد -->
+        <section class="why-choose-us">
+            <h2 class="section-title">لماذا تختارنا</h2>
+            <p class="why-choose-us-subtitle">نقدم خدمات متميزة بواجهة سهلة الاستخدام وتصميم عصري باستخدام أحدث تقنيات الويب</p>
+            
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">سهولة الاستخدام</h3>
+                        <p class="feature-text">واجهة مستخدم بسيطة وسهلة تمكن المتبرعين والمتطوعين من التسجيل والمشاركة بسرعة وفعالية دون تعقيدات.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">تنظيم فعال</h3>
+                        <p class="feature-text">نظام متكامل لإدارة الحملات الخيرية وتتبع التبرعات والمساعدات بشكل منظم يضمن الشفافية والدقة.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">تقارير مفصلة</h3>
+                        <p class="feature-text">إمكانية الحصول على تقارير دقيقة عن أداء الحملات ومستوى الإنجاز والتأثير على المجتمع.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">تواصل فعال</h3>
+                        <p class="feature-text">منصة تواصل مباشرة بين المتبرعين والمتطوعين تسهل تنسيق الجهود وتبادل الخبرات.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">05</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">أمان وخصوصية</h3>
+                        <p class="feature-text">حماية كاملة لبيانات المستخدمين والمستفيدين مع الالتزام بأعلى معايير الأمان والخصوصية.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">06</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">دعم مستمر</h3>
+                        <p class="feature-text">فريق دعم فني متاح على مدار الساعة للمساعدة في حل أي مشكلات تقنية قد تواجه المستخدمين.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="team">
+            <h2 class="section-title">فريق العمل</h2>
+            <div class="team-container">
+                <div class="team-card">
+                    <h3 class="team-member">أحمد محمد</h3>
+                    <p class="team-role">مدير المشروع</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-member">سارة علي</h3>
+                    <p class="team-role">مصممة UI/UX</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-member">خالد يوسف</h3>
+                    <p class="team-role">مطور Frontend</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-member">نور حسن</h3>
+                    <p class="team-role">مطور Backend</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-member">ليلى إبراهيم</h3>
+                    <p class="team-role">مسؤولة التسويق</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</body>
+</html>

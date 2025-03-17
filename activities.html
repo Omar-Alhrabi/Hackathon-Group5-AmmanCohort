@@ -10,6 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
+        .navbar {
+            background-color: #1a2b49; /* Dark blue theme */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link:hover {
+            color: #ffd700 !important; /* Gold hover effect */
+        }   
         body {
             font-family: 'Tajawal', sans-serif;
         }
@@ -48,37 +57,37 @@
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="#">طرود الخير</a>
-
+            <a class="navbar-brand" href="/">طرود الخير</a>
+    
             <!-- Toggler for Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+    
             <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarContent">
                 <!-- Navigation Links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#learn">فرص التطوع</a>
+                        <a class="nav-link" href="aboutus.html">من نحن</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#profile">فرص التبرع</a>
+                        <a class="nav-link" href="community.html">المجتمع</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#community">المجتمع</a>
+                        <a class="nav-link" href="activities.html">الأنشطة</a>
                     </li>
                 </ul>
 
-                <!-- Register and Sign In Buttons -->
-                <div class="d-flex">
-                    <a href="#register" class="btn btn-outline-light me-2">تسجيل</a>
-                    <a href="#signin" class="btn btn-primary">تسجيل الدخول</a>
+    
+                <!-- Conditional Authentication Buttons -->
+                <div class="d-flex" id="authButtons">
+                    <!-- This section will be dynamically replaced based on user session -->
+
                 </div>
             </div>
         </div>
@@ -172,10 +181,10 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
-                    <p><a href="#about" class="text-white">من نحن</a> | <a href="#faq" class="text-white">الأسئلة الشائعة</a></p>
+                    <p><a href="aboutus.html" class="text-white">من نحن</a> | <a href="#faq" class="text-white">الأسئلة الشائعة</a></p>
                 </div>
                 <div class="col-md-4">
-                    <p><a href="#contact" class="text-white">تواصل معنا</a> | <a href="#privacy" class="text-white">سياسة الخصوصية</a> | <a href="#terms" class="text-white">الشروط</a></p>
+                    <p><a href="contactus.html" class="text-white">تواصل معنا</a> | <a href="#privacy" class="text-white">سياسة الخصوصية</a> | <a href="#terms" class="text-white">الشروط</a></p>
                 </div>
                 <div class="col-md-4">
                     <p>تابعنا: <a href="#" class="text-white">فيسبوك</a> | <a href="#" class="text-white">تويتر</a></p>
@@ -183,42 +192,94 @@
             </div>
         </div>
     </footer>
-
+<!-- test work for upload to git hub -->
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const activitiesContainer = document.querySelector(".col-lg-9 .row");
+        document.addEventListener("DOMContentLoaded", function () {
+            const activitiesContainer = document.getElementById("activities-container");
+            const categoryFilter = document.getElementById("category");
+            const dateFilter = document.getElementById("date");
+            const locationFilter = document.getElementById("location");
+            const filterButton = document.querySelector(".btn-primary.w-100");
     
-            // Fetch data from JSON file
+            let allActivities = [];
+    
+            // Load activities from JSON file
             fetch("data/activities.json")
                 .then(response => response.json())
-                .then(activities => {
-                    activitiesContainer.innerHTML = ""; // Clear existing content
-    
-                    activities.forEach(activity => {
-                        const cardHTML = `
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="${activity.image}" class="card-img-top" alt="${activity.title}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${activity.title}</h5>
-                                        <p class="card-text">
-                                            <strong>التاريخ:</strong> ${activity.date}<br>
-                                            <strong>الموقع:</strong> ${activity.location}<br>
-                                            <strong>الوصف:</strong> ${activity.description}
-                                        </p>
-                                        <a href="#apply" class="btn btn-primary">تقدم بطلب</a>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        activitiesContainer.innerHTML += cardHTML;
-                    });
+                .then(data => {
+                    allActivities = data;
+                    displayActivities(allActivities); // Display all activities initially
                 })
                 .catch(error => console.error("Error loading activities:", error));
-        });
-    </script>
     
+            function displayActivities(activities) {
+                activitiesContainer.innerHTML = ""; // Clear existing content
+                activities.forEach(activity => {
+                    const cardHTML = `
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="${activity.image}" class="card-img-top" alt="${activity.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${activity.title}</h5>
+                                    <p class="card-text">
+                                        <strong>التاريخ:</strong> ${activity.date}<br>
+                                        <strong>الموقع:</strong> ${activity.location}<br>
+                                        <strong>الوصف:</strong> ${activity.description}
+                                    </p>
+                                    <a href="#apply" class="btn btn-primary">تقدم بطلب</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    activitiesContainer.innerHTML += cardHTML;
+                });
+            }
+    
+            filterButton.addEventListener("click", function () {
+                const selectedCategory = categoryFilter.value;
+                const selectedDate = dateFilter.value;
+                const selectedLocation = locationFilter.value.trim().toLowerCase();
+    
+                const filteredActivities = allActivities.filter(activity => {
+                    const matchesCategory = selectedCategory === "" || activity.category === selectedCategory;
+                    const matchesDate = selectedDate === "" || activity.date === selectedDate;
+                    const matchesLocation = selectedLocation === "" || activity.location.toLowerCase().includes(selectedLocation);
+                    return matchesCategory && matchesDate && matchesLocation;
+                });
+    
+                displayActivities(filteredActivities);
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+        const currentUser = getCurrentUser(); 
+        const authButtonsContainer = document.getElementById('authButtons');
+        
+        if (currentUser) {
+       
+            authButtonsContainer.innerHTML = `
+                <span class="text-light me-3 d-flex align-items-center">مرحباً ${currentUser.fullName}</span>
+                <button onclick="logout()" class="btn btn-outline-light">تسجيل الخروج</button>
+            `;
+        } else {
+           
+            authButtonsContainer.innerHTML = `
+                <a href="/register.html" class="btn btn-outline-light me-2">تسجيل</a>
+                <a href="/login.html" class="btn btn-primary">تسجيل الدخول</a>
+            `;
+        }
+    });
+    
+    function getCurrentUser() {
+        const userStr = localStorage.getItem('currentUser');
+        return userStr ? JSON.parse(userStr) : null;
+    }
+    
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+    }
+    </script>
 </body>
 </html>
