@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="shortcut icon" type="x-icon" href="../images/popcorn.png" />
+    <style>
+     /* Contact Page Styles */
+:root {
+  --gold: #FFD700;
+  --golden-yellow: #FFCC00;
+  --navy: #1A2B49;
+  --dark-blue: #0D1B2A;
+  --light-gold: #FFF2CC;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.body-b {
+  background: linear-gradient(135deg, var(--navy), var(--dark-blue));
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+}
+
+.body-b.english {
+  direction: ltr;
+}
+
+.container-c {
+  background-color: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container-c::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, var(--gold), var(--golden-yellow));
+}
+
+.container-c h2 {
+  color: var(--navy);
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.container-c h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--golden-yellow), var(--gold));
+  border-radius: 2px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--golden-yellow);
+  box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.2);
+  outline: none;
+}
+
+.bttn {
+  background: linear-gradient(90deg, var(--navy), var(--dark-blue));
+  color: var(--white);
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bttn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bttn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bttn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--golden-yellow));
+  z-index: -1;
+  transition: all 0.4s ease;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.bttn:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#feedback, #loading {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#feedback {
+  background-color: var(--light-gold);
+  color: var(--dark-blue);
+}
+
+#loading {
+  background-color: rgba(26, 43, 73, 0.1);
+  color: var(--navy);
+}
+
+.language-switcher {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--navy);
+  color: var(--gold);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.language-switcher:hover {
+  background-color: var(--dark-blue);
+}
+
+@media screen and (max-width: 768px) {
+  .container-c {
+    padding: 30px 20px;
+  }
+  
+  .container-c h2 {
+    font-size: 2rem;
+  }
+}
+    </style>
+  </head>
+  <body class="body-b">
+    <div>
+      <div class="container-c">
+        <h2>تواصل معنا</h2>
+        <form id="contact-form" onsubmit="sendMail(event)">
+          <input
+            type="text"
+            id="name"
+            placeholder="الأسم"
+            name="name"
+            required
+          />
+          <input
+            type="text"
+            id="phone"
+            placeholder="070-000-000-0"
+            name="phone"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            placeholder="البريد الإلكتروني "
+            name="email"
+            required
+          />
+          <textarea
+            id="message"
+            name="message"
+            placeholder="التعليق..."
+            required
+            style="resize: vertical; width: 100%; height: 150px"
+          ></textarea>
+
+          <button type="submit" class="bttn">إرسال</button>
+        </form>
+
+        <p id="loading" style="display: none; color: blue">Sending...</p>
+
+        <p id="feedback" style="display: none; color: green">
+          Your message has been sent successfully!
+        </p>
+      </div>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="contact.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+   
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const loggedUser = JSON.parse(localStorage.loggedInUser);
+
+      if (loggedUser && loggedUser.status) {
+        navAuth.innerHTML = `
+            <a href="profile.html" class="btn btn-hover">
+              <span>Profile</span>
+            </a>
+            <button id="logout" class="btn-danger btn-danger-hover">
+              <span>Logout</span>
+            </button>
+          `;
+
+        document
+          .getElementById("logout")
+          .addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "../pages/contactUs.html";
+          });
+      }
+ 
+
+    </script>
+    
+  </body>
+</html>
