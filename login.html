@@ -48,13 +48,15 @@
     
     <script>
         // Form validation and login logic
-    function validateAndLogin() {
+        function validateAndLogin() {
     let isValid = true;
     
+    // إعادة تعيين جميع رسائل الخطأ
     const errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(msg => msg.style.display = 'none');
     document.getElementById('error-message').style.display = 'none';
     
+    // التحقق من صحة البريد الإلكتروني
     const email = document.getElementById('email').value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -62,20 +64,27 @@
         isValid = false;
     }
     
+    // التحقق من صحة كلمة المرور
     const password = document.getElementById('password').value;
     if (password === '') {
         document.getElementById('password-error').style.display = 'block';
         isValid = false;
     }
     
+    // إذا كان النموذج صالحًا، حاول تسجيل الدخول
     if (isValid) {
+        // الحصول على المستخدمين المسجلين من localStorage
+        // تغيير اسم المخزن إلى ramadanRegistrations بدلاً من registeredUsers
         const users = JSON.parse(localStorage.getItem('ramadanRegistrations')) || [];
         
+        // البحث عن المستخدم بالبريد الإلكتروني وكلمة المرور المطابقة
         const user = users.find(u => u.email === email && u.password === password);
         
         if (user) {
+            // تسجيل الدخول ناجح
             document.getElementById('success-message').style.display = 'block';
             
+            // تخزين معلومات المستخدم الحالي
             localStorage.setItem('currentUser', JSON.stringify({
                 email: user.email,
                 fullName: user.fullName,
@@ -83,20 +92,23 @@
                 isLoggedIn: true
             }));
             
+            // إعادة تعيين النموذج
             document.getElementById('login-form').reset();
             
+            // التحويل إلى لوحة التحكم
             setTimeout(() => {
-
-                window.location.href = 'user-profile-system/index.html';
-
+                window.location.href = 'index.html';
+            }, 2000);
         } else {
+            // فشل تسجيل الدخول
             document.getElementById('error-message').style.display = 'block';
         }
     }
     
-    return false; 
+    return false; // منع إرسال النموذج
 }
 
+// إضافة وظيفة لعرض البيانات المخزنة (للاختبار فقط)
 function showStoredData() {
     const registrations = JSON.parse(localStorage.getItem('ramadanRegistrations')) || [];
     console.log('بيانات المستخدمين المسجلين:', registrations);
@@ -107,7 +119,12 @@ function showStoredData() {
     return { registrations, currentUser };
 }
 
-
+// إضافة وظيفة لإزالة المستخدم الحالي (تسجيل الخروج)
+function logout() {
+    localStorage.removeItem('currentUser');
+    console.log('تم تسجيل الخروج بنجاح');
+    window.location.href = 'login.html';
+}
 
 // التحقق مما إذا كان المستخدم مسجلاً بالفعل عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
@@ -174,8 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (currentUser && currentUser.isLoggedIn) {
                 // User is already logged in, redirect to dashboard
-                window.location.href = 'user-profile-system/index.html';
-
+                window.location.href = 'index.html';
             }
             
             // Check browser language setting

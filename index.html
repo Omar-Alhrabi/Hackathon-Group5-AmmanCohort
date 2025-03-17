@@ -286,7 +286,7 @@
         if (currentUser) {
        
             authButtonsContainer.innerHTML = `
-                <span class="text-light me-3 d-flex align-items-center">مرحباً ${currentUser.fullName}</span>
+                <a href="/user-profile-system/index.html" class="text-light me-3 d-flex align-items-center">مرحباً ${currentUser.fullName}</a>
                 <button onclick="logout()" class="btn btn-outline-light">تسجيل الخروج</button>
             `;
         } else {
