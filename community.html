@@ -462,7 +462,257 @@
     </div>
 </div>
 
+
+
+
+<script>
+// Add this script at the end of your HTML before the closing </body> tag
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get reference to the "Add New Topic" button
+    const addTopicButton = document.querySelector('.hero-section .btn-light');
+    
+    // Create a modal for adding new topics
+    const modalHTML = `
+    <div class="modal fade" id="addTopicModal" tabindex="-1" aria-labelledby="addTopicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTopicModalLabel">إضافة موضوع جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTopicForm">
+                        <div class="mb-3">
+                            <label for="topicTitle" class="form-label">عنوان الموضوع</label>
+                            <input type="text" class="form-control" id="topicTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="topicContent" class="form-label">محتوى الموضوع</label>
+                            <textarea class="form-control" id="topicContent" rows="4" required></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="topicCategory" class="form-label">التصنيف الرئيسي</label>
+                                <select class="form-select" id="topicCategory" required>
+                                    <option value="تطوع ميداني">تطوع ميداني</option>
+                                    <option value="تبرعات عينية">تبرعات عينية</option>
+                                    <option value="قصص نجاح">قصص نجاح</option>
+                                    <option value="فرصة تطوع">فرصة تطوع</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="topicTag" class="form-label">وسم إضافي</label>
+                                <select class="form-select" id="topicTag">
+                                    <option value="مخيم الزعتري">مخيم الزعتري</option>
+                                    <option value="مقترح تطوير">مقترح تطوير</option>
+                                    <option value="المنح التعليمية">المنح التعليمية</option>
+                                    <option value="عاجل">عاجل</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-success" id="submitTopic">نشر الموضوع</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    
+    // Append modal to body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Initialize the modal
+    const topicModal = new bootstrap.Modal(document.getElementById('addTopicModal'));
+    
+    // Add event listener to the button
+    addTopicButton.addEventListener('click', function() {
+        topicModal.show();
+    });
+    
+    // Handle form submission
+    document.getElementById('submitTopic').addEventListener('click', function() {
+        const form = document.getElementById('addTopicForm');
+        
+        // Basic form validation
+        const title = document.getElementById('topicTitle').value.trim();
+        const content = document.getElementById('topicContent').value.trim();
+        
+        if (!title || !content) {
+            alert('الرجاء ملء جميع الحقول المطلوبة');
+            return;
+        }
+        
+        // Create new topic object
+        const newTopic = {
+            id: Date.now(), // Unique ID based on timestamp
+            title: title,
+            content: content,
+            author: {
+                name: 'المستخدم الحالي', // Could be replaced with actual user data
+                type: 'متطوع',
+                avatar: '/api/placeholder/40/40'
+            },
+            category: document.getElementById('topicCategory').value,
+            tag: document.getElementById('topicTag').value,
+            date: new Date().toISOString(),
+            comments: 0
+        };
+        
+        // Save to local storage
+        saveTopicToLocalStorage(newTopic);
+        
+        // Add to DOM
+        addTopicToDOM(newTopic);
+        
+        // Close modal and reset form
+        topicModal.hide();
+        form.reset();
+    });
+    
+    // Load existing topics on page load
+    loadTopicsFromLocalStorage();
+});
+
+// Function to save topic to local storage
+function saveTopicToLocalStorage(topic) {
+    let topics = getTopicsFromLocalStorage();
+    topics.unshift(topic); // Add new topic at the beginning
+    localStorage.setItem('forumTopics', JSON.stringify(topics));
+}
+
+// Function to get topics from local storage
+function getTopicsFromLocalStorage() {
+    const topics = localStorage.getItem('forumTopics');
+    return topics ? JSON.parse(topics) : [];
+}
+
+// Function to load all topics from local storage
+function loadTopicsFromLocalStorage() {
+    const topics = getTopicsFromLocalStorage();
+    const topicList = document.querySelector('.card-body.p-0');
+    
+    // Clear existing topic cards except for the first four (original ones)
+    const existingCards = topicList.querySelectorAll('.topic-card');
+    for (let i = 4; i < existingCards.length; i++) {
+        existingCards[i].remove();
+    }
+    
+    // Add stored topics
+    topics.forEach(topic => {
+        addTopicToDOM(topic);
+    });
+}
+
+// Function to add topic to DOM
+function addTopicToDOM(topic) {
+    const topicList = document.querySelector('.card-body.p-0');
+    const firstTopic = topicList.querySelector('.topic-card'); // Get the first topic card
+    
+    // Format relative time
+    const relativeTime = getRelativeTime(new Date(topic.date));
+    
+    // Create new topic card element
+    const topicCard = document.createElement('div');
+    topicCard.className = 'topic-card p-3';
+    topicCard.dataset.id = topic.id;
+    
+    // Get appropriate badge color based on category
+    let categoryClass = 'bg-success';
+    if (topic.category === 'تبرعات عينية') categoryClass = 'bg-warning';
+    else if (topic.category === 'قصص نجاح') categoryClass = 'bg-primary';
+    else if (topic.category === 'فرصة تطوع') categoryClass = 'bg-success';
+    
+    // Get appropriate badge color for additional tag
+    let tagClass = 'bg-info';
+    if (topic.tag === 'عاجل') tagClass = 'bg-danger';
+    
+    // Construct topic card HTML
+    topicCard.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex">
+                <img src="${topic.author.avatar}" class="avatar-sm me-2" alt="صورة العضو">
+                <div>
+                    <h5 class="mb-1">${topic.title}</h5>
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold me-2">${topic.author.name}</span>
+                        <span class="badge badge-volunteer me-2">${topic.author.type}</span>
+                        <small class="text-muted">${relativeTime}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="fw-bold">${topic.comments}</div>
+                <small class="text-muted">تعليق</small>
+            </div>
+        </div>
+        <p class="mt-2">${topic.content}</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <span class="badge ${categoryClass} me-1">${topic.category}</span>
+                <span class="badge ${tagClass}">${topic.tag}</span>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline-success">قراءة المزيد</a>
+        </div>
+    `;
+    
+    // Insert after the first topic
+    topicList.insertBefore(topicCard, firstTopic.nextSibling);
+    
+    // Update stats
+    updateForumStats();
+}
+
+// Helper function to get relative time in Arabic
+function getRelativeTime(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMinutes = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    if (diffMinutes < 1) {
+        return 'الآن';
+    } else if (diffMinutes < 60) {
+        return `منذ ${diffMinutes} دقيقة`;
+    } else if (diffHours < 24) {
+        return `منذ ${diffHours} ساعة`;
+    } else {
+        return `منذ ${diffDays} يوم`;
+    }
+}
+
+// Update forum statistics
+function updateForumStats() {
+    const topics = getTopicsFromLocalStorage();
+    const topicsCount = document.querySelector('.stats-card .stats-number:nth-child(1)');
+    
+    // Only update if the element exists
+    if (topicsCount) {
+        const currentTopics = parseInt(topicsCount.textContent.replace(/\D/g, '')) || 680;
+        const totalTopics = currentTopics + topics.length;
+        topicsCount.textContent = formatArabicNumber(totalTopics);
+    }
+}
+
+// Helper function to format numbers in Arabic
+function formatArabicNumber(num) {
+    const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return num.toString().split('').map(digit => 
+        isNaN(parseInt(digit)) ? digit : arabicNumerals[parseInt(digit)]
+    ).join('');
+}
+</script>
+
+
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
 </body>
 </html>
