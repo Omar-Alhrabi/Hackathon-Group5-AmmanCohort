@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة طرود الخير لذوي الإعاقة</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .hero {
+            background: url('https://via.placeholder.com/1920x600?text=طرود+الخير') no-repeat center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.9)) ,url("images/output.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+        .section-padding {
+            padding: 60px 0;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .footer {
+            background-color: #1a2b49;
+            color: white;
+            padding: 20px 0;
+        }
+        .navbar {
+            background-color: #1a2b49; /* Dark blue theme */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link:hover {
+            color: #ffd700 !important; /* Gold hover effect */
+        }
+    </style>
+    <!-- Google Fonts for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">طرود الخير</a>
+
+            <!-- Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="تبديل التنقل">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#learn">فرص التطوع</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">فرص التبرع</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#community">المجتمع</a>
+                    </li>
+                </ul>
+
+                <!-- Register and Sign In Buttons -->
+                <div class="d-flex">
+                    <a href="#register" class="btn btn-outline-light me-2">تسجيل</a>
+                    <a href="#signin" class="btn btn-primary">تسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold">دعم ذوي الإعاقة بطرود الخير</h1>
+            <p class="lead">انضم إلينا لتقديم الطرود الخيرية وتحسين حياة ذوي الإعاقة</p>
+            <a href="#register" class="btn btn-primary btn-lg me-2">تبرع الآن</a>
+            <a href="#parcels" class="btn btn-outline-light btn-lg">استكشف الأنشطة</a>
+        </div>
+    </section>
+
+    <!-- Platform Overview -->
+    <section class="section-padding bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">نظرة عامة على المنصة</h2>
+            <p class="lead">ساعد في توفير طرود خيرية لذوي الإعاقة، تابع تأثيرك، وكن جزءًا من مجتمع العطاء.</p>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h3>متطوعون</h3>
+                    <p>أشخاص يساهمون بوقتهم وجهدهم.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>طرود موزعة</h3>
+                    <p>دعم يصل إلى ذوي الإعاقة.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>مبادرات</h3>
+                    <p>جهود متنوعة لتحسين الحياة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Parcels (formerly Activities) -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="text-center mb-5">النشاطات المميزة</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/400x200.svg" class="card-img-top" alt="طرد غذائي">
+                        <div class="card-body">
+                            <h5 class="card-title">التبرع لذوي الاحتياجات الخاصة</h5>
+                            <p class="card-text">ادعم ذوي الإعاقة من خلال التبرع</p>
+                            <a href="#apply" class="btn btn-primary">معرفة المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/400x200.svg" class="card-img-top" alt="طرد طبي">
+                        <div class="card-body">
+                            <h5 class="card-title">تقديم طرد خيري</h5>
+                            <p class="card-text">وفر مستلزمات لتحسين حياتهم.</p>
+                            <a href="#apply" class="btn btn-primary">معرفة المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/400x200.svg" class="card-img-top" alt="طرد تعليمي">
+                        <div class="card-body">
+                            <h5 class="card-title">المشاركة في الاعمال التطوعية</h5>
+                            <p class="card-text">ساهم معنا في الوصول لذوي الاحتياجات الخاصة</p>
+                            <a href="#apply" class="btn btn-primary">معرفة المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto text-center">
+                <h2>تجارب حقيقية</h2>
+                <p class="text-muted">نحن فخورون بالتأثير الذي أحدثناه في حياة الناس. إليكم ما يقوله المستفيدون والمتبرعون عن تجربتهم معنا.</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Testimonial 1 - Beneficiary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <img src="images/100x100.svg" class="avatar-img mb-3" alt="صورة المستفيد">
+                        <h5 class="card-title">فاطمة الزهراء</h5>
+                        <p class="text-muted small">مستفيدة من برنامج التعليم</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p class="card-text">"لم أكن أتخيل يوماً أن أتمكن من مواصلة تعليمي بعد الأزمة التي مرت بها عائلتي. لكن بفضل المنحة التعليمية التي قدمتموها، أنا الآن في سنتي الجامعية الثالثة وأطمح لمستقبل مشرق. شكراً لكم على إعادة الأمل إلى حياتي."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 - Donor -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <img src="images/100x100.svg" class="avatar-img mb-3" alt="صورة المتبرع">
+                        <h5 class="card-title">محمد الصالح</h5>
+                        <p class="text-muted small">متبرع شهري منذ ٥ سنوات</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p class="card-text">"أقدر الشفافية الكاملة التي تتعاملون بها. التقارير الدورية والصور الحقيقية للمشاريع تجعلني أشعر بالاطمئنان بأن تبرعاتي تذهب فعلاً لمن يحتاجها. سعيد جداً بأن أكون جزءاً من هذه المبادرة الإنسانية المميزة."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 - Beneficiary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <img src="images/100x100.svg" class="avatar-img mb-3" alt="صورة المستفيد">
+                        <h5 class="card-title">أحمد عبدالله</h5>
+                        <p class="text-muted small">مستفيد من مشروع المياه النظيفة</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p class="card-text">"كانت قريتنا تعاني من نقص حاد في المياه الصالحة للشرب. كنا نقطع مسافات طويلة للحصول على الماء. بعد حفر البئر في قريتنا، تغيرت حياتنا تماماً. انخفضت نسبة الأمراض، وأصبح لدى الأطفال وقت أكثر للدراسة بدلاً من جلب الماء."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Community Spotlight -->
+    <section class="section-padding bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">نافذة على المجتمع</h2>
+            <p>"شاركت فاطمة قصتها عن توزيع الطرود!"</p>
+            <a href="#forum" class="btn btn-primary">انضم إلى الحوار</a>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Banner -->
+    <section class="section-padding bg-primary text-white text-center">
+        <div class="container">
+            <h2>هل أنت مستعد للمساهمة؟</h2>
+            <p class="lead">ابدأ رحلتك لدعم ذوي الإعاقة اليوم!</p>
+            <a href="#register" class="btn btn-light btn-lg me-2">سجل الآن</a>
+            <a href="#parcels" class="btn btn-outline-light btn-lg">تصفح الطرود</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><a href="#about" class="text-white">من نحن</a> | <a href="#faq" class="text-white">الأسئلة الشائعة</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p><a href="#contact" class="text-white">تواصل معنا</a> | <a href="#privacy" class="text-white">سياسة الخصوصية</a> | <a href="#terms" class="text-white">الشروط</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p>تابعنا: <a href="#" class="text-white">فيسبوك</a> | <a href="#" class="text-white">تويتر</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
