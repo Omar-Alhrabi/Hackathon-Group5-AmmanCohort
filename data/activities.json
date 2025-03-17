@@ -4,27 +4,27 @@
         "date": "20 مارس 2025",
         "location": "الرياض",
         "description": "شارك في إفطار الصائمين.",
-        "image": "400x150.svg"
+        "image": "./images/400x150.svg"
     },
     {
         "title": "تقديم الصدقات",
         "date": "25 مارس 2025",
         "location": "جدة",
         "description": "تبرع لدعم المحتاجين.",
-        "image": "400x150.svg"
+        "image": "./images/400x150.svg"
     },
     {
         "title": "تنظيم فعاليات رمضانية",
         "date": "30 مارس 2025",
         "location": "الدمام",
         "description": "إحياء ليالي رمضان.",
-        "image": "400x150.svg"
+        "image": "./images/400x150.svg"
     },
     {
         "title": "إفطار جماعي",
         "date": "22 مارس 2025",
         "location": "مكة",
         "description": "إفطار جماعي للعائلات.",
-        "image": "400x150.svg"
+        "image": "./images/400x150.svg"
     }
 ]
